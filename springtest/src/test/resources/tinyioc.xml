@@ -1,28 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
-    <bean id="outputService" class="com.lucky.test.OutputServiceImpl">
-    </bean>
+	<bean id="outputService" class="com.lucky.test.OutputServiceImpl">
+	</bean>
 
-    <bean id="helloWorldService" class="com.lucky.test.HelloWorldServiceImpl">
-        <property name="text" value="Hello World!"></property>
-        <property name="outputService" ref="outputService"></property>
-    </bean>
+	<bean id="helloWorldService" class="com.lucky.test.HelloWorldServiceImpl">
+		<property name="text" value="Hello World!"></property>
+		<property name="outputService" ref="outputService"></property>
+	</bean>
 
-    <bean id="autoProxyCreator" class="com.lucky.springtest.aop.AspectJAwareAdvisorAutoProxyCreator"></bean>
+	<bean id="autoProxyCreator"
+		class="com.lucky.springtest.aop.AspectJAwareAdvisorAutoProxyCreator"></bean>
 
-    <bean id="timeInterceptor" class="com.lucky.test.aop.TimerInterceptor"></bean>
+	<bean id="timeInterceptor" class="com.lucky.test.aop.TimerInterceptor"></bean>
 
-    <bean id="aspectjAspect" class="com.lucky.springtest.aop.AspectJExpressionPointcutAdvisor">
-        <property name="advice" ref="timeInterceptor"></property>
-        <property name="expression" value="execution(* com.lucky.test.*.*(..))"></property>
-    </bean>
+	<bean id="aspectjAspect"
+		class="com.lucky.springtest.aop.AspectJExpressionPointcutAdvisor">
+		<property name="advice" ref="timeInterceptor"></property>
+		<property name="expression" value="execution(* com.lucky.test.*.*(..))"></property>
+	</bean>
+
+	<bean id="helloBean" class="com.lucky.test.spring.HelloBean"></bean>
+	<bean id="propertyGettedListener" class="com.lucky.test.spring.PropertyGettedListener"></bean>
+<!-- 	<bean id="propertyGettedListener2" class="com.lucky.test.spring.PropertyGettedListener2"></bean> -->
+
 
 </beans>

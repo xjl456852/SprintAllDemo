@@ -21,8 +21,14 @@ public class ApplicationContextTest {
 
     @Test
     public void testPostBeanProcessor() throws Exception {
+    	//在初始化的时候会对bean进行beanpostprocess处理操作,每一个bean都会执行这些前后处理的方法操作
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("tinyioc-postbeanprocessor.xml");
+//        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("tinyioc-postbeanprocessor.xml");
+        
         HelloWorldService helloWorldService = (HelloWorldService) applicationContext.getBean("helloWorldService");
         helloWorldService.helloWorld();
+        helloWorldService.helloWorld();
+        HelloWorldService helloWorldService2=  (HelloWorldService) applicationContext.getBean("helloWorldService");
+        helloWorldService2.helloWorld();
     }
 }
