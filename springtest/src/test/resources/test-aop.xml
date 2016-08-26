@@ -18,9 +18,16 @@
 		<!--配置切面通知类信息 -->
 		<aop:aspect ref="adviceTest">
 			<!--配置切点的信息，通知类的那个方法，以及要在那个类之前还是之后进行切入 -->
-			<aop:before method="adviceTest"
-				pointcut="execution( * *..*.HelloWorld.sayHello())" />
+			<aop:pointcut expression="execution( * *..*.HelloWorld.sayHello(..))"
+				id="sayHelloPointcut" />
+
+			<!-- <aop:pointcut expression="execution( * *..*.HelloWorld.sayHello())" -->
+			<!-- id="sayHelloPointcut2" /> -->
+			<!--配置时间点 -->
+			<aop:before method="adviceTest" pointcut-ref="sayHelloPointcut" />
+			<aop:around method="adviceTest2" pointcut-ref="sayHelloPointcut" />
 		</aop:aspect>
+
 	</aop:config>
 
 
