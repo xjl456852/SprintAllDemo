@@ -10,7 +10,7 @@
 
 	<bean id="adviceTest" class="com.lucky.test.aop.notice.AdviceTest" />
 
-
+	<context:property-placeholder location="classpath:/com/zsw/config/jdbc.properties"/>
 	<bean id="helloWorld" class="com.lucky.test.aop.notice.HelloWorld" />
 
 	<!--配置aop切面信息 -->
